@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +9,7 @@
 
 body {
   background: linear-gradient(135deg, #667eea, #764ba2);
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,6 +67,35 @@ h1 {
   background: #5a67d8;
 }
 
+/* Filters */
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.filter {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  color: #555;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.filter:hover {
+  border-color: #667eea;
+}
+
+.filter.active {
+  background: #667eea;
+  border-color: #667eea;
+  color: white;
+}
+
+/* Task list */
 .task-list {
   margin-top: 20px;
 }
@@ -106,6 +137,24 @@ h1 {
   color: #777;
 }
 
+/* Editing */
+.edit-input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 6px 8px;
+  border: 1px solid #667eea;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* Counter */
+.counter {
+  margin-top: 16px;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -115,37 +164,4 @@ h1 {
     opacity: 1;
     transform: translateY(0);
   }
-}
-.filters {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.filter {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background: white;
-  color: #555;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.filter:hover {
-  border-color: #667eea;
-}
-
-.filter.active {
-  background: #667eea;
-  border-color: #667eea;
-  color: white;
-}
-
-.counter {
-  margin-top: 16px;
-  text-align: center;
-  color: #777;
-  font-size: 14px;
 }

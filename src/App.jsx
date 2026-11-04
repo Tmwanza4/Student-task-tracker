@@ -8,6 +8,8 @@ export default function App() {
   });
   const [input, setInput] = useState("");
   const [filter, setFilter] = useState("all");
+  const [editingId, setEditingId] = useState(null);
+  const [editText, setEditText] = useState("");
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -37,6 +39,21 @@ export default function App() {
         task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
+  }
+
+  function startEdit(task) {
+    setEditingId(task.id);
+    setEditText(task.text);
+  }
+
+  function saveEdit(id) {
+    const text = editText.trim();
+    if (text) {
+      setTasks(prev =>
+        prev.map(task => (task.id === id ? { ...task, text } : task))
+      );
+    }
+    setEditingId(null);
   }
 
   // Derived values: computed from tasks + filter, never stored
@@ -86,12 +103,27 @@ export default function App() {
 
           {visibleTasks.map(task => (
             <div key={task.id} className="task">
-              <span
-                onClick={() => toggleTask(task.id)}
-                className={task.completed ? "completed" : ""}
-              >
-                {task.text}
-              </span>
+              {editingId === task.id ? (
+                <input
+                  className="edit-input"
+                  value={editText}
+                  autoFocus
+                  onChange={(e) => setEditText(e.target.value)}
+                  onBlur={() => saveEdit(task.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") saveEdit(task.id);
+                    if (e.key === "Escape") setEditingId(null);
+                  }}
+                />
+              ) : (
+                <span
+                  onClick={() => toggleTask(task.id)}
+                  onDoubleClick={() => startEdit(task)}
+                  className={task.completed ? "completed" : ""}
+                >
+                  {task.text}
+                </span>
+              )}
 
               <button
                 className="delete"
