@@ -116,3 +116,36 @@ h1 {
     transform: translateY(0);
   }
 }
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.filter {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  color: #555;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.filter:hover {
+  border-color: #667eea;
+}
+
+.filter.active {
+  background: #667eea;
+  border-color: #667eea;
+  color: white;
+}
+
+.counter {
+  margin-top: 16px;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
